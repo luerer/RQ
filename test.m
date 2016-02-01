@@ -28,7 +28,7 @@ char(baseSymbols);
 ExtendedSymbols_base = [baseSymbols zeros(1,base_prime-base)];
 ExtendedSymbols_enhance = [enhanceSymbols zeros(1,enhance_prime-enhance)];
 
-A_LA = rfc6330_A_LA(K,base)
+A_LA = rfc6330_A_LA(K,base);
 
 IntermediateSymbols = rfc6330_A_LA_inversion(A_LA,sourceSymbols,K,base)
 
