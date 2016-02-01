@@ -30,6 +30,24 @@ ExtendedSymbols_enhance = [enhanceSymbols zeros(1,enhance_prime-enhance)];
 
 A_LA = rfc6330_A_LA(K,base);
 
-IntermediateSymbols = rfc6330_A_LA_inversion(A_LA,sourceSymbols,K,base)
+IntermediateSymbols = rfc6330_A_LA_inversion(A_LA,sourceSymbols,K,base);
+
+Inter_base = IntermediateSymbols(1:base_prime);
+Inter_enhance = IntermediateSymbols(base_prime+1:end);
+EncSym_base = rfc6330_gen_encoding_symbol(base_prime,Inter_base,N_base:N_base+N_enhance-1);
+EncSym_enhance = rfc6330_gen_encoding_symbol(enhance_prime,Inter_enhance,N_base:N_base+N_enhance-1);
+if length(EncSym_base)~=length(EncSym_enhance)
+	error('Encoded Symbols do not match');
+end
+EncSymbols = zeros(1,length(EncSym_base))
+for ii = 0:length(EncSym_base)
+	EncSymbols(ii)=bitxor(EncSym_base(ii),EncSym_enhance(ii));
+end 
+
+EncSource_enhance = EncSymbols(1:enhance);
+EncRepair_enhance = EncSymbols(enhance_prime+1:end);
+
+char(EncSource_enhance);
+
 
 
