@@ -7,13 +7,12 @@ tic
 K = 100;
 %-------enhance and base in the source symbols--------------
 enhance = 60;base = 40;
-[S_b H_b B_b U_b L_b W_b P_b P1_b] = rfc6330_parameters( base_prime );
-[S_e H_e B_e U_e L_e W_e P_e P1_e] = rfc6330_parameters( enhance_prime );
-
 base_prime = rfc6330_K_prime(base);
 N_base = 2*base_prime-1;
 enhance_prime = rfc6330_K_prime(enhance);
 N_enhance = 2*enhance_prime-1;
+[S_b H_b B_b U_b L_b W_b P_b P1_b] = rfc6330_parameters( base_prime );
+[S_e H_e B_e U_e L_e W_e P_e P1_e] = rfc6330_parameters( enhance_prime );
 
 
 filename = 'bible_tmp.txt';
