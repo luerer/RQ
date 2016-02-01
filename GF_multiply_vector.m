@@ -1,7 +1,7 @@
 function result = GF_multiply_vector(A,B)
 if length(A) ~= length(B)
 	error('vector do not match in GF_multiply_vector');
-end;
+end
 
 result_temp = 0;
 temp = zeros(1,length(A));

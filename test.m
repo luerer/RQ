@@ -24,7 +24,7 @@ baseSymbols = sourceSymbols(1:base);
 enhanceSymbols = sourceSymbols(base+1:end);
 fclose(fid);
 
-char(sourceSymbols);
+char(sourceSymbols)
 char(baseSymbols)
 
 ExtendedSymbols_base = [baseSymbols zeros(1,base_prime-base)];
@@ -36,20 +36,29 @@ IntermediateSymbols = rfc6330_A_LA_inversion(A_LA,sourceSymbols,K,base);
 
 Inter_base = IntermediateSymbols(1:L_b);
 Inter_enhance = IntermediateSymbols(L_b+1:end);
-EncSym_base = rfc6330_gen_encoding_symbol(base_prime,Inter_base,N_base:N_base+N_enhance-1);
-EncSym_enhance = rfc6330_gen_encoding_symbol(enhance_prime,Inter_enhance,N_base:N_base+N_enhance-1);
-if length(EncSym_base)~=length(EncSym_enhance)
+EncSym_base_temp = rfc6330_gen_encoding_symbol(base_prime,Inter_base,N_base:N_base+N_enhance-1);
+EncSym_enhance = rfc6330_gen_encoding_symbol(enhance_prime,Inter_enhance,0:N_enhance-1);
+if length(EncSym_base_temp)~=length(EncSym_enhance)
 	error('Encoded Symbols do not match');
 end
-EncSymbols = zeros(1,length(EncSym_base));
-for ii = 1:length(EncSym_base)
-	EncSymbols(ii)=bitxor(EncSym_base(ii),EncSym_enhance(ii));
+EncSymbols = zeros(1,length(EncSym_base_temp));
+for ii = 1:length(EncSym_base_temp)
+	EncSymbols(ii)=bitxor(EncSym_base_temp(ii),EncSym_enhance(ii));
 end 
 
+EncSym_base = rfc6330_gen_encoding_symbol(base_prime,Inter_base,0:N_base-1);
+
+EncSource_base = EncSym_base(1:base);
+EncRepair_base = EncSym_base(base_prime+1:end);
 EncSource_enhance = EncSymbols(1:enhance);
 EncRepair_enhance = EncSymbols(enhance_prime+1:end);
 
-char(EncSource_enhance);
+SentSymbols_base = [EncSource_base EncRepair_base];
+SentSymbols_enhance = [EncSource_enhance EncRepair_enhance];
+
+char(EncSource_enhance)
+
+
 
 
 
