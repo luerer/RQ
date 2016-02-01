@@ -25,7 +25,6 @@ enhanceSymbols = sourceSymbols(base+1:end);
 fclose(fid);
 
 char(sourceSymbols)
-char(baseSymbols)
 
 ExtendedSymbols_base = [baseSymbols zeros(1,base_prime-base)];
 ExtendedSymbols_enhance = [enhanceSymbols zeros(1,enhance_prime-enhance)];
@@ -56,6 +55,7 @@ EncRepair_enhance = EncSymbols(enhance_prime+1:end);
 SentSymbols_base = [EncSource_base EncRepair_base];
 SentSymbols_enhance = [EncSource_enhance EncRepair_enhance];
 
+char(EncSource_base)
 char(EncSource_enhance)
 
 
