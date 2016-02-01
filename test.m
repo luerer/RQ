@@ -21,11 +21,11 @@ myline = fgets(fid);
 sourceSymbols_temp = double(myline);
 sourceSymbols=sourceSymbols_temp(1:K);
 baseSymbols = sourceSymbols(1:base);
-enhanceSymbols = sourceSymbols(base+1:end)
+enhanceSymbols = sourceSymbols(base+1:end);
 fclose(fid);
 
 char(sourceSymbols);
-char(baseSymbols);
+char(baseSymbols)
 
 ExtendedSymbols_base = [baseSymbols zeros(1,base_prime-base)];
 ExtendedSymbols_enhance = [enhanceSymbols zeros(1,enhance_prime-enhance)];
@@ -41,7 +41,7 @@ EncSym_enhance = rfc6330_gen_encoding_symbol(enhance_prime,Inter_enhance,N_base:
 if length(EncSym_base)~=length(EncSym_enhance)
 	error('Encoded Symbols do not match');
 end
-EncSymbols = zeros(1,length(EncSym_base))
+EncSymbols = zeros(1,length(EncSym_base));
 for ii = 1:length(EncSym_base)
 	EncSymbols(ii)=bitxor(EncSym_base(ii),EncSym_enhance(ii));
 end 
