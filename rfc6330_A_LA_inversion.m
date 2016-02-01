@@ -19,7 +19,7 @@ B=A_LA(len_A1+1:end,1:len_A1);
 BA1base=GF_multiply(B,Inter_baseSym');
 part = rfc6330_inversion(A2,BA1base',enhance);
 temp=zeros(1,length(part))
-for ii ＝ 1:length(part)
+for ii = 1:length(part)
 	temp(ii)=bitxor(part(ii),Inter_enhanceSym(ii));
 
 end

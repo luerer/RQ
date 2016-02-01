@@ -7,6 +7,9 @@ tic
 K = 100;
 %-------enhance and base in the source symbols--------------
 enhance = 60;base = 40;
+[S_b H_b B_b U_b L_b W_b P_b P1_b] = rfc6330_parameters( base_prime );
+[S_e H_e B_e U_e L_e W_e P_e P1_e] = rfc6330_parameters( enhance_prime );
+
 base_prime = rfc6330_K_prime(base);
 N_base = 2*base_prime-1;
 enhance_prime = rfc6330_K_prime(enhance);
@@ -32,8 +35,8 @@ A_LA = rfc6330_A_LA(K,base);
 
 IntermediateSymbols = rfc6330_A_LA_inversion(A_LA,sourceSymbols,K,base);
 
-Inter_base = IntermediateSymbols(1:base_prime);
-Inter_enhance = IntermediateSymbols(base_prime+1:end);
+Inter_base = IntermediateSymbols(1:L_b);
+Inter_enhance = IntermediateSymbols(L_b+1:end);
 EncSym_base = rfc6330_gen_encoding_symbol(base_prime,Inter_base,N_base:N_base+N_enhance-1);
 EncSym_enhance = rfc6330_gen_encoding_symbol(enhance_prime,Inter_enhance,N_base:N_base+N_enhance-1);
 if length(EncSym_base)~=length(EncSym_enhance)
