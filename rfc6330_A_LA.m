@@ -17,7 +17,7 @@ A(R1+1:end,C1+1:end) = A2;
 
 ISI_LA = N_base:(enhance_prime+N_base-1);
 %A3 = rfc6330_A(base_prime,ISI_LA)
-A3=zeros(length(ISI_LA),C1)；
+A3=zeros(length(ISI_LA),C1);
 for ii = 1:length(ISI_LA)
     % obtain (d,a,b) triple for given ISI
     [ d, a, b, d1, a1, b1 ] = rfc6330_tuple( base_prime, ISI_LA(ii) );
@@ -40,6 +40,6 @@ for ii = 1:length(ISI_LA)
     end
 end
 
-[R3 C3] = size(A3)；
+[R3 C3] = size(A3);
 [S H B U L W P P1] = rfc6330_parameters( enhance_prime );
 A(R1+S+H+1:end,1:C1) = A3;
