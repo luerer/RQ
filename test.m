@@ -57,6 +57,51 @@ SentSymbols_enhance = [EncSource_enhance EncRepair_enhance];
 
 char(EncSource_base)
 char(EncSource_enhance)
+%-----------------erase channel-------------------
+RecAllESIs_B = 0:(length(SentSymbols_base)-1);
+RecAllESIs_E = 0:(length(SentSymbols_enhance)-1);
+RecSourceESIs_B = 0:(base-1);
+RecRepairESIs_B = base:(length(SentSymbols_base)-1);
+RecSourceESIs_E = 0:(enhance-1);
+RecRepairESIs_E = enhance:(length(SentSymbols_enhance)-1);
+errProb = 0.4;
+RecESIs_B = [];
+for ind = 0:(length(SentSymbols_base)-1)
+    if (rand > errProb)
+        RecESIs_B = [RecESIs_B ind];
+    end
+end
+if (length(RecESIs_B) < base)
+    disp('Insufficient number of collected symbols!')
+    disp('Decoding will fail!')
+end
+RecESIs_E = [];
+for ind = 0:(length(SentSymbols_enhance)-1)
+    if (rand > errProb)
+        RecESIs_E = [RecESIs_E ind];
+    end
+end
+if (length(RecESIs_E) < enhance)
+    disp('Insufficient number of collected symbols!')
+    disp('Decoding will fail!')
+end
+% Receiving side
+% Recover the ISIs -RecISIs- from the received ESIs -RecESIs.
+indSource_B  = RecESIs_B(find(RecESIs_B < base));
+indRepair_B  = RecESIs_B(find(RecESIs_B >= base));
+if (~isempty(indRepair_B))
+    indRepair_B = indRepair_B + base_prime - base;
+end
+indPadding_B = base:(base_prime-1);
+RecISIs_B = [indSource_B indPadding_B indRepair_B];
+
+indSource_E  = RecESIs_E(find(RecESIs_E < enhance));
+indRepair_E  = RecESIs_E(find(RecESIs_E >= enhance));
+if (~isempty(indRepair_E))
+    indRepair_E = indRepair_E + enhance_prime - enhance;
+end
+indPadding_E = enhance:(enhance_prime-1);
+RecISIs_E = [indSource_E indPadding_E indRepair_E];
 
 
 
