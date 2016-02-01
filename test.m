@@ -42,7 +42,7 @@ if length(EncSym_base)~=length(EncSym_enhance)
 	error('Encoded Symbols do not match');
 end
 EncSymbols = zeros(1,length(EncSym_base))
-for ii = 0:length(EncSym_base)
+for ii = 1:length(EncSym_base)
 	EncSymbols(ii)=bitxor(EncSym_base(ii),EncSym_enhance(ii));
 end 
 
