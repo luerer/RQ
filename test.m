@@ -114,7 +114,7 @@ RecSymbols_E = SentSymbols_E(indSource_E+1);
 RecSymbols_E = [RecSymbols_E zeros(1,enhance_prime-enhance)];
 RecSymbols_E = [RecSymbols_E SentSymbols_E(indRepair_E - enhance_prime + enhance + 1)];
 
-RecIntermediateSymbols = A_LA_Rec(base,enhance,RecESIs_B,RecESIs_E,RecSymbols_B,RecSymbols_E);
+RecIntermediateSymbols = A_LA_Rec(base,enhance,RecISIs_B,RecISIs_E,RecSymbols_B,RecSymbols_E);
 
 RecIntSym_B = RecIntermediateSymbols(1:L_b);
 RecIntSym_E = RecIntermediateSymbols(1+L_b:end);
