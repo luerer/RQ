@@ -126,7 +126,7 @@ for ii = 1:length(RecoverSymtemp_E)
 	RecoverSym_E(ii) = bitxor(RecoverSymtemp_B(ii),RecoverSymtemp_E(ii));
 end
 
-RecoverSym_B = rfc6330_gen_encoding_symbol(base_prime,RecISIs_B,ESIs_B);
+RecoverSym_B = rfc6330_gen_encoding_symbol(base_prime,RecIntSym_B,ESIs_B);
 
 RecoverSym = [RecoverSym_B RecoverSym_E];
 
