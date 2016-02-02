@@ -14,7 +14,7 @@ N_enhance = 2*enhance_prime-1;
 ISIs_B = 0:(base_prime-1);
 ESIs_B = ISIs_B(1:base);
 ISIs_E = 0:(enhance_prime-1);
-ESIs_E = ISIs_B(1:enhance);
+ESIs_E = ISIs_E(1:enhance);
 [S_b H_b B_b U_b L_b W_b P_b P1_b] = rfc6330_parameters( base_prime );
 [S_e H_e B_e U_e L_e W_e P_e P1_e] = rfc6330_parameters( enhance_prime );
 
