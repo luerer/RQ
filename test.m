@@ -119,8 +119,8 @@ RecIntermediateSymbols = A_LA_Rec(base,enhance,RecESIs_B,RecESIs_E,RecSymbols_B,
 RecIntSym_B = RecIntermediateSymbols(1:L_b);
 RecIntSym_E = RecIntermediateSymbols(1+L_b:end);
 
-RecoverSymtemp_B = rfc6330_gen_encoding_symbol(base_prime,RecISIs_B,ESIs_E+base);
-RecoverSymtemp_E = rfc6330_gen_encoding_symbol(enhance_prime,RecISIs_E,ESIs_E);
+RecoverSymtemp_B = rfc6330_gen_encoding_symbol(base_prime,RecIntSym_B,ESIs_E+base);
+RecoverSymtemp_E = rfc6330_gen_encoding_symbol(enhance_prime,RecIntSym_E,ESIs_E);
 RecoverSym_E = zeros(1,length(RecoverSymtemp_E));
 for ii = 1:length(RecoverSymtemp_E)
 	RecoverSym_E(ii) = bitxor(RecoverSymtemp_B(ii),RecoverSymtemp_E(ii));
